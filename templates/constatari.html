@@ -7,7 +7,7 @@
             <tr>
               <th scope="col">ID_Constatare</th>
               <th scope="col">ID_Comanda</th>
-              <th scope="col">Nume_Echipa</th>
+              <th scope="col">ID_Echipa</th>
               <th scope="col">Pret_Lucrare</th>
             </tr>
           </thead>
@@ -16,7 +16,7 @@
                 <tr>
                   <th scope="row">{{ constatare.id_constatare }}</th>
                   <td>{{ constatare.id_comanda }}</td>
-                  <td>{{ constatare.nume_echipa }}</td>
+                  <td>{{ constatare.id_echipa_id }}</td>
                   <td>{{ constatare.pret_lucrare }}</td>
                 </tr>
             {% endfor %}

@@ -5,19 +5,17 @@
         <table class="table table-striped table-dark" style="margin-top: 5%;">
           <thead>
             <tr>
-              <th scope="col">Nume</th>
-              <th scope="col">Prenume</th>
-              <th scope="col">Telefon</th>
-              <th scope="col">Adresa</th>
+              <th scope="col">ID_Sarcina</th>
+              <th scope="col">Task(s)</th>
+              <th scope="col">ID_Constatare</th>
             </tr>
           </thead>
           <tbody>
-            {% for client in clienti %}
+            {% for sarcina in sarcini %}
                 <tr>
-                  <td>{{ client.nume }}</td>
-                  <td>{{ client.prenume }}</td>
-                  <td>{{ client.telefon }}</td>
-                  <td>{{ client.adresa }}</td>
+                  <td>{{ sarcina.id_sarcina }}</td>
+                  <td>{{ sarcina.task }}</td>
+                  <td>{{ sarcina.id_constatare }}</td>
                 </tr>
             {% endfor %}
           </tbody>

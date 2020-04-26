@@ -5,19 +5,21 @@
         <table class="table table-striped table-dark" style="margin-top: 5%;">
           <thead>
             <tr>
-              <th scope="col">Nume</th>
-              <th scope="col">Prenume</th>
-              <th scope="col">Telefon</th>
-              <th scope="col">Adresa</th>
+              <th scope="col">ID_Piesa</th>
+              <th scope="col">ID_Constatare</th>
+              <th scope="col">Nume piesa</th>
+              <th scope="col">Cantitate</th>
+              <th scope="col">Pret total</th>
             </tr>
           </thead>
           <tbody>
-            {% for client in clienti %}
+            {% for piesa in piese %}
                 <tr>
-                  <td>{{ client.nume }}</td>
-                  <td>{{ client.prenume }}</td>
-                  <td>{{ client.telefon }}</td>
-                  <td>{{ client.adresa }}</td>
+                  <td>{{ piesa.id_piesa }}</td>
+                  <td>{{ piesa.id_constatare }}</td>
+                  <td>{{ piesa.nume_piesa }}</td>
+                  <td>{{ piesa.cantitate }}</td>
+                  <td>{{ piesa.pret }}</td>
                 </tr>
             {% endfor %}
           </tbody>

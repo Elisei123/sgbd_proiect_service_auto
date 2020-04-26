@@ -14,6 +14,15 @@ def home(request):
         'home.html',
     )
 
+def piese(request):
+    piese = Piese.objects.raw('SELECT * FROM Piese')
+    return render(request,
+                  'piese.html',
+                  {
+                      'piese': piese,
+                  }
+    )
+
 def clienti(request):
     clienti = Clienti.objects.raw('SELECT * FROM Clienti')
     return render(request,
@@ -40,7 +49,7 @@ def constatari(request):
                         'constatari': constatari,
                       }
     )
-# TODO: ValueError: Field 'id_constatare' expected a number but got 'Echipa001'.
+
 def echipe(request):
     echipe = Echipe.objects.raw('SELECT * FROM Echipe')
     return render(request,
@@ -48,4 +57,22 @@ def echipe(request):
                       {
                         'echipe': echipe,
                       }
+    )
+
+def sarcini(request):
+    sarcini = Sarcini.objects.raw('SELECT * FROM Sarcini')
+    return render(request,
+                  'sarcini.html',
+                  {
+                      'sarcini': sarcini,
+                  }
+    )
+
+def specialisti(request):
+    specialisti = Specialisti.objects.raw('SELECT * FROM Specialisti')
+    return render(request,
+                  'specialisti.html',
+                  {
+                      'specialisti': specialisti,
+                  }
     )

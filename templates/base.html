@@ -31,6 +31,10 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
 
+                <li class="nav-item" style="{% if request.resolver_match.url_name == "schita" %}font-weight: bold;{% endif %}">
+                    <a class="nav-link" href="/schita">Schita</a>
+                </li>
+
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Tabele
@@ -45,15 +49,12 @@
                     <a class="dropdown-item" href="/specialisti">Specialisti</a>
                   </div>
                 </div>
-
-                <li class="nav-item" style="{% if request.resolver_match.url_name == "schita" %}font-weight: bold;{% endif %}">
-                    <a class="nav-link" href="/schita">Schita</a>
-                </li>
             </ul>
+            <!--
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            </form> -->
           </div>
       </div>
     </nav>

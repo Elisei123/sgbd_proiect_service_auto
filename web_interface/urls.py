@@ -10,7 +10,7 @@ urlpatterns = [
     path('comenzi/', views.comenzi, name='comenzi'),
     path('constatari/', views.constatari, name='constatari'),
     path('echipe/', views.echipe, name='echipe'),
-    # path('piese/', views.piese, name='piese'),
-    # path('sarcini/', views.sarcini, name='sarcini'),
-    # path('specialisti/', views.specialisti, name='specialisti'),
+    path('piese/', views.piese, name='piese'),
+    path('sarcini/', views.sarcini, name='sarcini'),
+    path('specialisti/', views.specialisti, name='specialisti'),
 ]
