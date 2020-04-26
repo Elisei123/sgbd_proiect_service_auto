@@ -2,6 +2,12 @@ from django.shortcuts import render
 from  .models import Clienti, Comenzi, Constatari, Echipe, Piese, Sarcini, Specialisti
 # Create your views here.
 
+def schita(request):
+    return render(
+        request,
+        'schita.html',
+    )
+
 def home(request):
     return render(
         request,
