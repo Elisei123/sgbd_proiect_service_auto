@@ -7,6 +7,8 @@
         <table class="table table-striped table-dark" style="margin-top: 5%;">
           <thead>
             <tr>
+              <th scope="col">ID_Client</th>
+              <th scope="col">CNP_Client</th>
               <th scope="col">Nume</th>
               <th scope="col">Prenume</th>
               <th scope="col">Telefon</th>
@@ -16,6 +18,8 @@
           <tbody>
             {% for client in clienti %}
                 <tr>
+                  <td>{{ client.id }}</td>
+                  <td>{{ client.CNP_Client }}</td>
                   <td>{{ client.nume }}</td>
                   <td>{{ client.prenume }}</td>
                   <td>{{ client.telefon }}</td>

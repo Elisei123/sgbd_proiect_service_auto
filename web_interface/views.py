@@ -25,6 +25,7 @@ def piese(request):
 
 def clienti(request):
     clienti = Clienti.objects.raw('SELECT * FROM Clienti')
+
     return render(request,
                       'clienti.html',
                       {

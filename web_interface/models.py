@@ -13,6 +13,9 @@ class Clienti(models.Model):
     class Meta:
         db_table = 'Clienti'
 
+    def __str__(self):
+        return '{}'.format(self.CNP_Client)
+
 
 class Comenzi(models.Model):
     id_comanda = models.AutoField(primary_key=True)
@@ -24,6 +27,10 @@ class Comenzi(models.Model):
     class Meta:
         db_table = 'Comenzi'
 
+    def __str__(self):
+        return '{}'.format(self.id_comanda)
+
+
 
 class Constatari(models.Model):
     id_constatare = models.AutoField(primary_key=True)
@@ -34,6 +41,9 @@ class Constatari(models.Model):
     class Meta:
         db_table = 'Constatari'
 
+    def __str__(self):
+        return '{}'.format(self.id_constatare)
+
 
 #TODO: Nu apare in Constatari sa alegi echipa pe care sa o pui sa lucreze.
 
@@ -43,6 +53,9 @@ class Echipe(models.Model):
 
     class Meta:
         db_table = 'Echipe'
+
+    def __str__(self):
+        return '{}'.format(self.id_echipa)
 
 
 class Piese(models.Model):
@@ -55,6 +68,9 @@ class Piese(models.Model):
     class Meta:
         db_table = 'Piese'
 
+    def __str__(self):
+        return '{}'.format(self.id_piesa)
+
 
 class Sarcini(models.Model):
     id_sarcina = models.AutoField(primary_key=True)
@@ -63,6 +79,9 @@ class Sarcini(models.Model):
 
     class Meta:
         db_table = 'Sarcini'
+
+    def __str__(self):
+        return '{}'.format(self.id_sarcina)
 
 
 class Specialisti(models.Model):
@@ -74,3 +93,6 @@ class Specialisti(models.Model):
 
     class Meta:
         db_table = 'Specialisti'
+
+    def __str__(self):
+        return '{}'.format(self.id_specialist) # Before '{}' if you want to add text.
