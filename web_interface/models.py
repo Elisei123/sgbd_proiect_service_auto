@@ -55,7 +55,7 @@ class Echipe(models.Model):
         db_table = 'Echipe'
 
     def __str__(self):
-        return '{}'.format(self.id_echipa)
+        return '{}'.format(self.nume_echipa)
 
 
 class Piese(models.Model):
