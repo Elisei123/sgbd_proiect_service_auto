@@ -13,4 +13,7 @@ urlpatterns = [
     path('piese/', views.piese, name='piese'),
     path('sarcini/', views.sarcini, name='sarcini'),
     path('specialisti/', views.specialisti, name='specialisti'),
+    path('especialisti/', views.especialisti, name='especialisti'),
+    path('incasari/', views.incasari, name='incasari'),
+    path('StareComenzi/', views.StareComenzi, name='StareComenzi'),
 ]

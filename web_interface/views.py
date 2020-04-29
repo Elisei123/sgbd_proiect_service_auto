@@ -77,3 +77,46 @@ def specialisti(request):
                       'specialisti': specialisti,
                   }
     )
+
+def especialisti(request):
+    Mecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Mecanic"')
+    Electromecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Electromecanic"')
+    Electricieni = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Electrician"')
+    return render(request,
+                  'especialisti.html',
+                  {
+                      'Mecanici': Mecanici,
+                      'Electromecanici': Electromecanici,
+                      'Electricieni': Electricieni
+                  }
+    )
+
+def incasari(request):
+    # TODO: De terminat aici. Trebuie sa facem select din baza de date:
+    # TODO: SELECT nume, prenume, pret_lucrare from Clienti WHERE p.s CNP este id  (diferit)
+
+    Mecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Mecanic"')
+    Electromecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Electromecanic"')
+    Electricieni = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Electrician"')
+    return render(request,
+                  'incasari.html',
+                  {
+                      'Mecanici': Mecanici,
+                      'Electromecanici': Electromecanici,
+                      'Electricieni': Electricieni
+                  }
+    )
+
+
+
+
+def StareComenzi(request):
+    comenzi = Comenzi.objects.raw("SELECT * FROM Comenzi WHERE stare_comanda = 'In desfasurare!'"
+                                      " UNION"
+                                      " SELECT * FROM Comenzi WHERE stare_comanda = 'Comanda plasata!'")
+    return render(request,
+                  'stare_comenzi.html',
+                  {
+                      'comenzi': comenzi,
+                  }
+    )
