@@ -8,7 +8,7 @@
 
 ### Mysql hints.
 
-#####- Reuniune  (`Comenzi in desfasurare / plasate`)
+##### - Reuniune  (`Comenzi in desfasurare / plasate`)
   
     SELECT * FROM Comenzi WHERE stare_comanda = 'In desfasurare!'  
     UNION  
