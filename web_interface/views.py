@@ -59,6 +59,24 @@ def CautareClient(request):
         }
     )
 
+# - Proiectie
+def ComenziDistincte(request):
+
+    from django.db import connection
+    ComenziDistincte = connection.cursor()
+    ComenziDistincte.execute("SELECT DISTINCT descriere FROM Comenzi GROUP BY descriere")
+
+    lista_comenzi_distincte = []
+    for row in ComenziDistincte:
+        lista_comenzi_distincte.append(row[0])
+    return render(
+        request,
+        'ComenziDistincte.html',
+        {
+            'lista_comenzi_distincte':lista_comenzi_distincte
+        }
+    )
+
 
 def comenzi(request):
     comenzi = Comenzi.objects.raw('SELECT * FROM Comenzi')
@@ -69,6 +87,8 @@ def comenzi(request):
             'comenzi': comenzi,
         }
     )
+
+# - Diferenta
 def ComenziEfectuate(request):
     comenzi = Comenzi.objects.raw("SELECT * FROM `Comenzi`"
                                   " EXCEPT "
@@ -126,7 +146,7 @@ def specialisti(request):
         }
     )
 
-
+# - Selectie
 def especialisti(request):
     Mecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Mecanic"')
     Electromecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Electromecanic"')
@@ -141,11 +161,8 @@ def especialisti(request):
         }
     )
 
-
+# - Jonctiunea (I)
 def incasari(request):
-    # TODO: De terminat aici. Trebuie sa facem select din baza de date:
-    # TODO: SELECT nume, prenume, pret_lucrare from Clienti WHERE p.s CNP este id  (diferit)
-
     Incasare = Constatari.objects.raw("SELECT id_constatare,"
                                           " c.nume, c.prenume,"
                                           " const.pret_lucrare"
@@ -169,7 +186,7 @@ def incasari(request):
         }
     )
 
-
+# - Reuniune
 def StareComenzi(request):
     comenzi = Comenzi.objects.raw("SELECT * FROM Comenzi WHERE stare_comanda = 'In desfasurare!'"
                                   " UNION"
@@ -179,5 +196,27 @@ def StareComenzi(request):
         'stare_comenzi.html',
         {
             'comenzi': comenzi,
+        }
+    )
+
+
+#- Jonctiunea (II)
+def ConstatariCuPiese(request):
+    ConstatariCuPiese = Piese.objects.raw(
+        "SELECT p.id_piesa,"
+            " p.nume_piesa,"
+            " com.data_comanda,"
+            " com.stare_comanda,"
+            " com.descriere "
+        "from Piese p "
+            "inner JOIN Constatari const"
+                " ON p.id_constatare=const.id_constatare"
+            " INNER JOIN Comenzi com"
+                " ON const.id_comanda=com.id_comanda")
+    return render(
+        request,
+        'ConstatariCuPiese.html',
+        {
+            'ConstatariCuPiese': ConstatariCuPiese,
         }
     )

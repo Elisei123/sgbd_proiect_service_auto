@@ -8,27 +8,27 @@
 
 ### Mysql hints.
 
-##### - Reuniune  (`Comenzi in desfasurare / plasate`)
+##### - Reuniune  (`def-name: StareComenzi`)
   
     SELECT * FROM Comenzi WHERE stare_comanda = 'In desfasurare!'  
     UNION  
     SELECT * FROM Comenzi WHERE stare_comanda = 'Comanda plasata!'
       
-##### - Diferenta (`Comenzi efectuate`)
+##### - Diferenta (`def-name: ComenziEfectuate`)
     SELECT * FROM `Comenzi`
     EXCEPT
     SELECT * FROM `Comenzi` WHERE stare_comanda = 'In desfasurare!' OR stare_comanda= 'Comanda plasata!'
 
     
-##### - Selectie (`Angajati`)  
+##### - Selectie (`def-name: especialisti`)  
     SELECT * FROM Specialisti WHERE specializare="Mecanic"  
     SELECT * FROM Specialisti WHERE specializare="Electromecanic"  
     SELECT * FROM Specialisti WHERE specializare="Electrician"
     
-##### - Proiectie (`Probleme distincte comenzi`)
-    SELECT DISTINCT descriere FROM `Comenzi`  
+##### - Proiectie (`def-name: ComenziDistincte`)
+    SELECT DISTINCT descriere FROM Comenzi GROUP BY descriere 
       
-##### - Jonctiunea (I)  
+##### - Jonctiunea (I)  (`def-name: incasari`)
     SELECT id_constatare, 
        c.nume, 
        c.prenume, 
@@ -40,9 +40,17 @@
                    ON com.id_comanda = const.id_constatare   
   
 
-##### - Jonctiunea (II)    
+##### - Jonctiunea (II)  (`def-name: ConstatariCuPiese`)  
+    SELECT p.id_piesa, 
+           p.nume_piesa, 
+           com.data_comanda, 
+           com.stare_comanda, 
+           com.descriere 
+    FROM   piese p 
+           INNER JOIN constatari const 
+                   ON p.id_constatare = const.id_constatare 
+           INNER JOIN comenzi com 
+                   ON const.id_comanda = com.id_comanda 
     
-
-
-
-Pentru mai multe detalii: Click [aici](https://github.com/Elisei123/sgbd_proiect_service_auto/blob/master/web_interface/views.py).
+###### P.S: Def-name = function name in views.py  
+###### Views.py: Click [here](https://github.com/Elisei123/sgbd_proiect_service_auto/blob/master/web_interface/views.py).

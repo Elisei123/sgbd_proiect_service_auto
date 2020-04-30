@@ -18,4 +18,6 @@ urlpatterns = [
     path('StareComenzi/', views.StareComenzi, name='StareComenzi'),
     path('CautareClient/', views.CautareClient, name='CautareClient'),
     path('ComenziEfectuate/', views.ComenziEfectuate, name='ComenziEfectuate'),
+    path('ConstatariCuPiese/', views.ConstatariCuPiese, name='ConstatariCuPiese'),
+    path('ComenziDistincte/', views.ComenziDistincte, name='ComenziDistincte'),
 ]

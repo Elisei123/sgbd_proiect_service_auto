@@ -21,16 +21,23 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-          <a class="navbar-brand">Paoul de control</a>
+          <a class="navbar-brand">Panoul de control</a>
           <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon "></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-{#                <li class="nav-item" style="{% if request.resolver_match.url_name == "home" %}font-weight: bold;{% endif %}">#}
-{#                    <a class="nav-link" href="/">Home</a>#}
-{#                </li>#}
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {% block current_page1 %} Informatii comenzi. {% endblock current_page1 %}
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="nav-link" href="/ComenziEfectuate"> Comenzi Efectuate</a>
+                    <a class="nav-link" href="/StareComenzi"> Stare comenzi </a>
+                    <a class="nav-link" href="/ComenziDistincte"> Comenzi Distincte </a>
+                  </div>
+                </div>
 
                 <li class="nav-item" style="{% if request.resolver_match.url_name == "especialisti" %}font-weight: bold;{% endif %}">
                     <a class="nav-link" href="/especialisti">Angajati</a>
@@ -40,16 +47,12 @@
                     <a class="nav-link" href="/incasari">Incasari</a>
                 </li>
 
-                <li class="nav-item" style="{% if request.resolver_match.url_name == "StareComenzi" %}font-weight: bold;{% endif %}">
-                    <a class="nav-link" href="/StareComenzi">Comenzi in desfasurare / plasate</a>
-                </li>
-
                 <li class="nav-item" style="{% if request.resolver_match.url_name == "CautareClient" %}font-weight: bold;{% endif %}">
                     <a class="nav-link" href="/CautareClient">Cautare Client</a>
                 </li>
 
-                <li class="nav-item" style="{% if request.resolver_match.url_name == "ComenziEfectuate" %}font-weight: bold;{% endif %}">
-                    <a class="nav-link" href="/ComenziEfectuate">Comenzi Efectuate</a>
+                <li class="nav-item" style="{% if request.resolver_match.url_name == "ConstatariCuPiese" %}font-weight: bold;{% endif %}">
+                    <a class="nav-link" href="/ConstatariCuPiese"> Constatari care contin piese. </a>
                 </li>
 
                 <div class="dropdown">
