@@ -16,4 +16,6 @@ urlpatterns = [
     path('especialisti/', views.especialisti, name='especialisti'),
     path('incasari/', views.incasari, name='incasari'),
     path('StareComenzi/', views.StareComenzi, name='StareComenzi'),
+    path('CautareClient/', views.CautareClient, name='CautareClient'),
+    path('ComenziEfectuate/', views.ComenziEfectuate, name='ComenziEfectuate'),
 ]

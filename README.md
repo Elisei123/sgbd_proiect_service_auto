@@ -13,14 +13,33 @@
     SELECT * FROM Comenzi WHERE stare_comanda = 'In desfasurare!'  
     UNION  
     SELECT * FROM Comenzi WHERE stare_comanda = 'Comanda plasata!'
-##### - Diferenta
+        
+-- 
+##### - Diferenta (`Comenzi efectuate`)
+    SELECT * FROM `Comenzi`
+    EXCEPT
+    SELECT * FROM `Comenzi` WHERE stare_comanda = 'In desfasurare!' OR stare_comanda= 'Comanda plasata!'
+
+    
+-- 
 ##### - Selectie (`Angajati`)  
     SELECT * FROM Specialisti WHERE specializare="Mecanic"  
     SELECT * FROM Specialisti WHERE specializare="Electromecanic"  
     SELECT * FROM Specialisti WHERE specializare="Electrician"
-##### - Proiectie
-##### - J1
-##### - J2
+    
+-- 
+##### - Proiectie (`Probleme distincte comenzi`)
+    SELECT DISTINCT descriere FROM `Comenzi`  
+      
+-- 
+##### - J1  
+    
+-- 
+
+##### - J2  
+    
+-- 
+
 
 
 Pentru mai multe detalii: Click [aici](https://github.com/Elisei123/sgbd_proiect_service_auto/blob/master/web_interface/views.py).

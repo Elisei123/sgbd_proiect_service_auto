@@ -36,12 +36,20 @@
                     <a class="nav-link" href="/especialisti">Angajati</a>
                 </li>
 
-                <li class="nav-item" style="{% if request.resolver_match.url_name == "incasari" %}font-weight: bold;{% endif %}">
+                <!--<li class="nav-item" style="{% if request.resolver_match.url_name == "incasari" %}font-weight: bold;{% endif %}">
                     <a class="nav-link" href="/incasari">Incasari</a>
-                </li>
+                </li>-->
 
                 <li class="nav-item" style="{% if request.resolver_match.url_name == "StareComenzi" %}font-weight: bold;{% endif %}">
                     <a class="nav-link" href="/StareComenzi">Comenzi in desfasurare / plasate</a>
+                </li>
+
+                <li class="nav-item" style="{% if request.resolver_match.url_name == "CautareClient" %}font-weight: bold;{% endif %}">
+                    <a class="nav-link" href="/CautareClient">Cautare Client</a>
+                </li>
+
+                <li class="nav-item" style="{% if request.resolver_match.url_name == "ComenziEfectuate" %}font-weight: bold;{% endif %}">
+                    <a class="nav-link" href="/ComenziEfectuate">Comenzi Efectuate</a>
                 </li>
 
                 <div class="dropdown">

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} Clienti {% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <br><br><h1 style="text-align: center; font-family: 'Oswald', sans-serif;">Cauta dupa nume.</h1>
+        <br>
+        <div style="text-align: center; width: 100%; ">
+            <form method="get" action="">
+                <div class="input-group mb-3" style="width: 50%; margin: 0 auto;">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Nume</span>
+                  </div>
+                  <input name="firstname" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{ firstname }}">
+                </div>
+                <div class="input-group mb-3" style="width: 50%; margin: 0 auto;">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Prenume</span>
+                  </div>
+                  <input name="lastname" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{ lastname }}">
+                </div>
+                <button type="submit" class="btn btn-dark">Cauta</button>
+            </form>
+        </div>
+
+        <table class="table table-striped table-dark" style="margin-top: 5%;">
+          <thead>
+            <tr>
+              <th scope="col">ID_Client</th>
+              <th scope="col">CNP_Client</th>
+              <th scope="col">Nume</th>
+              <th scope="col">Prenume</th>
+              <th scope="col">Telefon</th>
+              <th scope="col">Adresa</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for client in clienti %}
+                <tr>
+                  <td>{{ client.id }}</td>
+                  <td>{{ client.CNP_Client }}</td>
+                  <td>{{ client.nume }}</td>
+                  <td>{{ client.prenume }}</td>
+                  <td>{{ client.telefon }}</td>
+                  <td>{{ client.adresa }}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+{% endblock content %}
