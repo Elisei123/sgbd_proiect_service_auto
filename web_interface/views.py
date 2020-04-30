@@ -146,16 +146,26 @@ def incasari(request):
     # TODO: De terminat aici. Trebuie sa facem select din baza de date:
     # TODO: SELECT nume, prenume, pret_lucrare from Clienti WHERE p.s CNP este id  (diferit)
 
-    Mecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Mecanic"')
-    Electromecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Electromecanic"')
-    Electricieni = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Electrician"')
+    Incasare = Constatari.objects.raw("SELECT id_constatare,"
+                                          " c.nume, c.prenume,"
+                                          " const.pret_lucrare"
+                                      " from Clienti c "
+                                          "INNER JOIN Comenzi com "
+                                                "ON c.id=com.CNP_Client "
+                                          "INNER JOIN Constatari const "
+                                                "ON com.id_comanda = const.id_constatare")
+
+    total_incasari = 0
+
+    for i in Incasare:
+        total_incasari = total_incasari + i.pret_lucrare
+    print(total_incasari)
     return render(
         request,
-        'incasari.html',
+        'Incasari.html',
         {
-            'Mecanici': Mecanici,
-            'Electromecanici': Electromecanici,
-            'Electricieni': Electricieni
+            'Incasare': Incasare,
+            'total_incasari': total_incasari,
         }
     )
 

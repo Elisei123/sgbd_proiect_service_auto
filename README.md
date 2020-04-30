@@ -13,32 +13,35 @@
     SELECT * FROM Comenzi WHERE stare_comanda = 'In desfasurare!'  
     UNION  
     SELECT * FROM Comenzi WHERE stare_comanda = 'Comanda plasata!'
-        
--- 
+      
 ##### - Diferenta (`Comenzi efectuate`)
     SELECT * FROM `Comenzi`
     EXCEPT
     SELECT * FROM `Comenzi` WHERE stare_comanda = 'In desfasurare!' OR stare_comanda= 'Comanda plasata!'
 
     
--- 
 ##### - Selectie (`Angajati`)  
     SELECT * FROM Specialisti WHERE specializare="Mecanic"  
     SELECT * FROM Specialisti WHERE specializare="Electromecanic"  
     SELECT * FROM Specialisti WHERE specializare="Electrician"
     
--- 
 ##### - Proiectie (`Probleme distincte comenzi`)
     SELECT DISTINCT descriere FROM `Comenzi`  
       
--- 
-##### - J1  
-    
--- 
+##### - Jonctiunea (I)  
+    SELECT id_constatare, 
+       c.nume, 
+       c.prenume, 
+       const.pret_lucrare 
+    FROM   clienti c 
+           INNER JOIN comenzi com 
+                   ON c.id = com.cnp_client 
+           INNER JOIN constatari const 
+                   ON com.id_comanda = const.id_constatare   
+  
 
-##### - J2  
+##### - Jonctiunea (II)    
     
--- 
 
 
 

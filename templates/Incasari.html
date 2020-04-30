@@ -4,28 +4,29 @@
 
 {% block content %}
     <div class="container">
+        <br><br>
+        <h1 style="text-align: center; font-family: 'Oswald', sans-serif;">Incasari clienti.</h1>
         <table class="table table-striped table-dark" style="margin-top: 5%;">
           <thead>
             <tr>
-
+              <th scope="col">ID Constatare</th>
               <th scope="col">Nume</th>
               <th scope="col">Prenume</th>
               <th scope="col">Cost</th>
             </tr>
           </thead>
           <tbody>
-            {% for specialist in specialisti %}
+            {% for i in Incasare %}
                 <tr>
-                  <td>{{ specialist.id_specialist }}</td>
-                  <td>{{ specialist.nume_echipa }}</td>
-                  <td>{{ specialist.nume }}</td>
-                  <td>{{ specialist.prenume }}</td>
-                  <td>{{ specialist.specializare }}</td>
+                  <td>{{ i.id_constatare }}</td>
+                  <td>{{ i.nume }}</td>
+                  <td>{{ i.prenume }}</td>
+                  <td>{{ i.pret_lucrare }}</td>
                 </tr>
             {% endfor %}
           </tbody>
         </table>
-        <h2>Total de incasat: </h2>
+        <h2 style="float: right; font-family: 'Oswald', sans-serif;">Total de incasat: {{ total_incasari }} <span>lei.</span></h2>
     </div>
 
 {% endblock content %}
