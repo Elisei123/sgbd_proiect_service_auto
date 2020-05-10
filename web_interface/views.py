@@ -176,7 +176,6 @@ def incasari(request):
 
     for i in Incasare:
         total_incasari = total_incasari + i.pret_lucrare
-    print(total_incasari)
     return render(
         request,
         'Incasari.html',
