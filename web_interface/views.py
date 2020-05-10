@@ -148,9 +148,9 @@ def specialisti(request):
 
 # - Selectie
 def especialisti(request):
-    Mecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Mecanic"')
-    Electromecanici = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Electromecanic"')
-    Electricieni = Specialisti.objects.raw('SELECT * FROM Specialisti WHERE specializare="Electrician"')
+    Mecanici = Specialisti.objects.raw('SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Mecanic"')
+    Electromecanici = Specialisti.objects.raw('SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Electromecanic"')
+    Electricieni = Specialisti.objects.raw('SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Electrician"')
     return render(
         request,
         'especialisti.html',
@@ -168,9 +168,9 @@ def incasari(request):
                                           " const.pret_lucrare"
                                       " from Clienti c "
                                           "INNER JOIN Comenzi com "
-                                                "ON c.id=com.CNP_Client "
+                                                "ON c.id_client=com.id_client "
                                           "INNER JOIN Constatari const "
-                                                "ON com.id_comanda = const.id_constatare")
+                                                "ON com.id_comanda = const.id_comanda")
 
     total_incasari = 0
 

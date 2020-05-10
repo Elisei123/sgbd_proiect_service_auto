@@ -27,7 +27,7 @@ SECRET_KEY = '(b3&*uk@0he34*5a1#8ez%3$a6r-@=(e%_3qwl3__8z5&e(eq1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'fabrica-elisei.mailo.cloud']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'fabrica-elisei.mailo.cloud']
 
 
 # Application definition

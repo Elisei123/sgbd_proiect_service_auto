@@ -11,7 +11,7 @@
           <thead>
             <tr>
               <th scope="col">ID_Comanda</th>
-              <th scope="col">CNP_Client</th>
+              <th scope="col">ID_Client</th>
               <th scope="col">Data</th>
               <th scope="col">Stare</th>
               <th scope="col">Descriere (client)</th>
@@ -21,7 +21,7 @@
             {% for comanda in comenzi %}
                 <tr>
                   <th scope="row">{{ comanda.id_comanda }}</th>
-                  <td>{{ comanda.CNP_Client }}</td>
+                  <td>{{ comanda.id_client }}</td>
                   <td>{{ comanda.data_comanda }}</td>
                   <td>{{ comanda.stare_comanda }}</td>
                   <td>{{ comanda.descriere }}</td>

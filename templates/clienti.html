@@ -6,7 +6,13 @@
 
 {% block content %}
     <div class="container">
-        <table class="table table-striped table-dark" style="margin-top: 5%;">
+        <div class="buttons_action" style="margin-top: 5%; float: right; margin-bottom: 5px">
+            <button type="button" class="btn btn-success">Adauga client nou</button>
+            <button type="button" class="btn btn-warning">Editeaza</button>
+            <a href="{% url 'sterge' %}" type="button" class="btn btn-danger">Sterge</a>
+        </div>
+
+        <table class="table table-striped table-dark">
           <thead>
             <tr>
               <th scope="col">ID_Client</th>
@@ -14,18 +20,26 @@
               <th scope="col">Nume</th>
               <th scope="col">Prenume</th>
               <th scope="col">Telefon</th>
-              <th scope="col">Adresa</th>
+              <th scope="col">Judet</th>
+              <th scope="col">Oras</th>
+              <th scope="col">Strada</th>
+              <th scope="col">Nr_casa</th>
+              <th scope="col">Checkboxes</th>
             </tr>
           </thead>
           <tbody>
             {% for client in clienti %}
                 <tr>
-                  <td>{{ client.id }}</td>
+                  <td>{{ client.id_client }}</td>
                   <td>{{ client.CNP_Client }}</td>
                   <td>{{ client.nume }}</td>
                   <td>{{ client.prenume }}</td>
                   <td>{{ client.telefon }}</td>
-                  <td>{{ client.adresa }}</td>
+                  <td>{{ client.judet }}</td>
+                  <td>{{ client.oras }}</td>
+                  <td>{{ client.strada }}</td>
+                  <td>{{ client.numar_poarta }}</td>
+                  <td style="text-align: center"><input type="checkbox" aria-label="Checkbox for following text input"></td>
                 </tr>
             {% endfor %}
           </tbody>
