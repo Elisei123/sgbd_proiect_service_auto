@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Adaugare client! {% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <form action="" method="POST" style="margin-top: 5%; text-align: center">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md">
+                    <div style="width: 50%; text-align: right; font-size: 16px;">
+                        <span style="margin-right: 10px;">CNP Client:</span>
+                        <input style="text-align: center;" type="text" name="CNP_Client" placeholder="CNP_Client" required><br>
+                        <span style="margin-right: 10px;">Nume</span>
+                        <input style="text-align: center; margin-top: 5px;" type="text" name="Nume" placeholder="Nume" required><br>
+                        <span style="margin-right: 10px;">Prenume</span>
+                        <input style="text-align: center; margin-top: 5px;" type="text" name="Prenume" placeholder="Prenume" required><br>
+                        <span style="margin-right: 10px;">Telefon: </span>
+                        <input style="text-align: center; margin-top: 5px;" type="text" name="Telefon" placeholder="Telefon" required><br>
+                        <span style="margin-right: 10px;">Judet: </span>
+                        <input style="text-align: center; margin-top: 5px;" type="text" name="Judet" placeholder="Judet" required><br>
+                        <span style="margin-right: 10px;">Oras: </span>
+                        <input style="text-align: center; margin-top: 5px;" type="text" name="Oras" placeholder="Oras" required><br>
+                        <span style="margin-right: 10px;">Strada: </span>
+                        <input style="text-align: center; margin-top: 5px;" type="text" name="Strada" placeholder="Strada" required><br>
+                        <span style="margin-right: 10px;">Numar poarta: </span>
+                        <input style="text-align: center; margin-top: 10px;" type="text" name="Numar_poarta" placeholder="Numar poarta" required><br>
+                        <button style="margin-right: 45px; margin-top: 10px;" type="submit" class="btn btn-success">Salveaza</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+{% endblock content %}

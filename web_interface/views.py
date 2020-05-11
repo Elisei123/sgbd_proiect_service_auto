@@ -1,4 +1,10 @@
-from django.shortcuts import render
+import json
+
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
+from django.db import connection
+
 from .models import Clienti, Comenzi, Constatari, Echipe, Piese, Sarcini, Specialisti
 
 
@@ -28,9 +34,14 @@ def piese(request):
         }
     )
 
-
+# todo: de facut aici
+@csrf_exempt
 def clienti(request):
-    clienti = Clienti.objects.raw('SELECT * FROM Clienti')
+    clienti = Clienti.objects.raw('SELECT * FROM Clienti ORDER BY id_client DESC;')
+    if request.POST:
+        data = json.loads(request.POST.get("data", "{}"))
+        for id in data['checklisturi_apasate']:
+            Clienti.objects.filter(id_client=str(id)).delete()
 
     return render(
         request,
@@ -39,6 +50,55 @@ def clienti(request):
             'clienti': clienti,
         }
     )
+
+def editare(request, client_id_client):
+    if request.POST:
+        CNP_Client=request.POST['CNP_Client']
+        Nume=request.POST['Nume']
+        Prenume=request.POST['Prenume']
+        Telefon=request.POST['Telefon']
+        Judet=request.POST['Judet']
+        Oras=request.POST['Oras']
+        Strada=request.POST['Strada']
+        Numar_poarta=request.POST['Numar_poarta']
+
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE `Clienti` SET `CNP_Client` = '"+CNP_Client+"', `nume` = '"+Nume+"', `prenume` = '"+Prenume+"',"
+                           " `telefon` = '"+Telefon+"', `judet` = '"+Judet+"', `oras` = '"+Oras+"', `strada` = '"+Strada+"', `numar_poarta` = '"+Numar_poarta+"' WHERE `Clienti`.`id_client` = "+ client_id_client+";")
+        return redirect(clienti)
+
+    obj_client_pt_editat = Clienti.objects.get(pk=client_id_client)
+    return render(
+        request,
+        'editClienti.html',
+        {
+            'obj_client_pt_editat': obj_client_pt_editat,
+        }
+    )
+
+def addClient(request):
+    if request.POST:
+        CNP_Client=request.POST['CNP_Client']
+        Nume=request.POST['Nume']
+        Prenume=request.POST['Prenume']
+        Telefon=request.POST['Telefon']
+        Judet=request.POST['Judet']
+        Oras=request.POST['Oras']
+        Strada=request.POST['Strada']
+        Numar_poarta=request.POST['Numar_poarta']
+
+        with connection.cursor() as cursor:
+            cursor.execute("INSERT INTO `Clienti` (`id_client`, `CNP_Client`, `nume`, `prenume`, `telefon`, `judet`, `oras`, `strada`, `numar_poarta`)"
+                           " VALUES (NULL,'" + CNP_Client +  "', '" + Nume +  "', '" + Prenume +  "', '" + Telefon +  "', '" + Judet +  "', '" + Oras +  "', '" + Strada +  "', '" + Numar_poarta + "');")
+
+        return redirect(clienti)
+
+    return render(
+        request,
+        'addClient.html',
+    )
+
+
 
 
 def CautareClient(request):
@@ -219,3 +279,4 @@ def ConstatariCuPiese(request):
             'ConstatariCuPiese': ConstatariCuPiese,
         }
     )
+

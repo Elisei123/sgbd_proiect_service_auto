@@ -4,12 +4,12 @@
 
 {% block current_page %} Clienti {% endblock current_page %}
 
+
 {% block content %}
-    <div class="container">
-        <div class="buttons_action" style="margin-top: 5%; float: right; margin-bottom: 5px">
-            <button type="button" class="btn btn-success">Adauga client nou</button>
-            <button type="button" class="btn btn-warning">Editeaza</button>
-            <a href="{% url 'sterge' %}" type="button" class="btn btn-danger">Sterge</a>
+    <div class="container" style="text-align: center">
+        <div class="buttons_action" style="margin-top: 5%; margin-bottom: 5px">
+            <a href="/addClient" id="button_add" type="button" class="btn btn-success">Adauga client nou</a>
+            <a href="/clienti" id="button_delete" onclick="delete_rows()" type="button" class="btn btn-danger">Sterge</a>
         </div>
 
         <table class="table table-striped table-dark">
@@ -24,6 +24,7 @@
               <th scope="col">Oras</th>
               <th scope="col">Strada</th>
               <th scope="col">Nr_casa</th>
+              <th scope="col">Editare</th>
               <th scope="col">Checkboxes</th>
             </tr>
           </thead>
@@ -39,11 +40,32 @@
                   <td>{{ client.oras }}</td>
                   <td>{{ client.strada }}</td>
                   <td>{{ client.numar_poarta }}</td>
-                  <td style="text-align: center"><input type="checkbox" aria-label="Checkbox for following text input"></td>
+                  <td><a href="{% url 'editare' client.id_client %}" style="color: black" type="button" class="btn btn-warning">Editeaza</a></td>
+                  <td style="text-align: center"><input id="{{ client.id_client }}" onclick="check( {{ client.id_client }} )"
+                                                        type="checkbox" aria-label="Checkbox for following text input"></td>
                 </tr>
             {% endfor %}
           </tbody>
         </table>
     </div>
+
+    <script>
+        var checklisturi_apasate = [];
+        function delete_rows(){
+            $.post( "", { data: JSON.stringify({
+                    checklisturi_apasate: checklisturi_apasate
+                }) }, function(response) {
+            })
+        }
+
+        function check(id) {
+            if (checklisturi_apasate.includes(id)){
+                checklisturi_apasate.pop(id)
+            }else{
+                checklisturi_apasate.push(id)
+            }
+        }
+
+    </script>
 
 {% endblock content %}
