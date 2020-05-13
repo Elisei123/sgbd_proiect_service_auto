@@ -1,7 +1,9 @@
 # Service auto project.
 
 ## Installation
-- install python libraries: `python3 -m pip install -r requirements.txt `
+- activate venv: `source venv/bin/activate`
+- install mysql: `sudo apt-get install python-dev default-libmysqlclient-dev`
+- install python libraries: `pip install -r requirements.txt `
 - run migrations: `python3 manage.py migrate`
 - start the server: `python3 manage.py runserver`
 

@@ -1,4 +1,4 @@
-#!/home/elisei/Desktop/sgbd_proiect_service_auto/venv/bin/python
+#!/home/elisei/Desktop/Facultate/sgbd_proiect_service_auto/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
