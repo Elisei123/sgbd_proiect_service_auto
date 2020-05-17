@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="container" style="text-align: center">
-        <div class="buttons_action" style="margin-top: 5%; margin-bottom: 5px">
+        <div class="buttons_action" style="margin-top: 5%; margin-bottom: 5px; float: right">
             <a href="/addClient" id="button_add" type="button" class="btn btn-success">Adauga client nou</a>
             <a href="/clienti" id="button_delete" onclick="delete_rows()" type="button" class="btn btn-danger">Sterge</a>
         </div>
@@ -40,7 +40,7 @@
                   <td>{{ client.oras }}</td>
                   <td>{{ client.strada }}</td>
                   <td>{{ client.numar_poarta }}</td>
-                  <td><a href="{% url 'editare' client.id_client %}" style="color: black" type="button" class="btn btn-warning">Editeaza</a></td>
+                  <td><a href="{% url 'editareClient' client.id_client %}" style="color: black" type="button" class="btn btn-warning">Editeaza</a></td>
                   <td style="text-align: center"><input id="{{ client.id_client }}" onclick="check( {{ client.id_client }} )"
                                                         type="checkbox" aria-label="Checkbox for following text input"></td>
                 </tr>

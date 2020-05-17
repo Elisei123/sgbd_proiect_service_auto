@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block current_page %} Echipe {% endblock current_page %}
+
+{% block content %}
+    <div class="container">
+        <div class="add_echipa" style="text-align: center">
+            <br><br>
+            <h1>Adauga echipa noua</h1>
+            <form action="" method="POST">
+                <br>
+                <span>Nume echipa: </span><input type="text" name="nume_echipa" placeholder="Nume echipa" required>
+                <button style="" type="submit" class="btn btn-success">Salveaza</button>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock content %}

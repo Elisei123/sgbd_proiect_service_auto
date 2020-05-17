@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="container" style="text-align: center">
-        <div class="buttons_action" style="margin-top: 5%; margin-bottom: 5px">
+        <div class="buttons_action" style="margin-top: 5%; margin-bottom: 5px; float: right">
             <a href="/addSpecialist" id="button_add" type="button" class="btn btn-success">Adauga specialist nou</a>
             <a href="/specialisti" id="button_delete" onclick="delete_rows()" type="button" class="btn btn-danger">Sterge</a>
         </div>
@@ -27,7 +27,7 @@
                   <td>{{ specialist.nume }}</td>
                   <td>{{ specialist.prenume }}</td>
                   <td>{{ specialist.specializare }}</td>
-                  <td><a href="{% url 'editare' specialist.id_specialist %}" style="color: black" type="button" class="btn btn-warning">Editeaza</a></td>
+                  <td><a href="{% url 'editareSpecialist' specialist.id_specialist %}" style="color: black" type="button" class="btn btn-warning">Editeaza</a></td>
                   <td style="text-align: center"><input id="{{ specialist.id_specialist }}" onclick="check( {{ specialist.id_specialist }} )"
                                                         type="checkbox" aria-label="Checkbox for following text input"></td>
                 </tr>

@@ -51,7 +51,7 @@ def clienti(request):
         }
     )
 
-def editare(request, client_id_client):
+def editareClient(request, client_id_client):
     if request.POST:
         CNP_Client=request.POST['CNP_Client']
         Nume=request.POST['Nume']
@@ -172,8 +172,13 @@ def constatari(request):
         }
     )
 
-
+@csrf_exempt
 def echipe(request):
+    if request.POST:
+        data = json.loads(request.POST.get("data", "{}"))
+        for id in data['checklisturi_apasate']:
+            Echipe.objects.filter(id_echipa=str(id)).delete()
+
     echipe = Echipe.objects.raw('SELECT * FROM Echipe')
     return render(
         request,
@@ -181,6 +186,18 @@ def echipe(request):
         {
             'echipe': echipe,
         }
+    )
+
+@csrf_exempt
+def addteam(request):
+    if request.POST:
+        Nume_echipa = request.POST['nume_echipa']
+        with connection.cursor() as cursor:
+            cursor.execute("INSERT INTO `Echipe` (`id_echipa`, `nume_echipa`) VALUES (NULL, '" + Nume_echipa + "');")
+        return redirect(echipe)
+    return render(
+        request,
+        'add_team.html',
     )
 
 
@@ -196,7 +213,7 @@ def sarcini(request):
 
 @csrf_exempt
 def specialisti(request):
-    specialisti = Specialisti.objects.raw('SELECT * FROM Specialisti')
+    specialisti = Specialisti.objects.raw('SELECT * from Specialisti ORDER BY id_specialist DESC;')
 
     if request.POST:
         data = json.loads(request.POST.get("data", "{}"))
@@ -226,6 +243,28 @@ def add_specialist(request):
         request,
         'addSpecialist.html',
         {
+            'echipe': echipe,
+        }
+    )
+
+def editareSpecialist(request, client_id_client):
+    if request.POST:
+        Nume = request.POST['Nume']
+        Prenume = request.POST['Prenume']
+        Specializare = request.POST['Specializare']
+        ID_Echipa = request.POST['id_echipa']
+
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE `Specialisti` SET `nume` = '" + Nume + "', `prenume` = '" + Prenume + "', `specializare` = '" + Specializare + "', `id_echipa` = '" + ID_Echipa + "' WHERE `Specialisti`.`id_specialist` = " + client_id_client + ";")
+        return redirect(specialisti)
+
+    obj_specialist_pt_editat = Specialisti.objects.get(pk=client_id_client)
+    echipe = Echipe.objects.raw('SELECT * FROM Echipe')
+    return render(
+        request,
+        'editSpecialist.html',
+        {
+            'obj_client_pt_editat': obj_specialist_pt_editat,
             'echipe': echipe,
         }
     )

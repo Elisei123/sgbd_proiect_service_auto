@@ -21,6 +21,8 @@ urlpatterns = [
     path('ConstatariCuPiese/', views.ConstatariCuPiese, name='ConstatariCuPiese'),
     path('ComenziDistincte/', views.ComenziDistincte, name='ComenziDistincte'),
     path('addClient/', views.addClient, name='addClient'),
-    path('editare/<client_id_client>', views.editare, name='editare'),
+    path('editareClient/<client_id_client>', views.editareClient, name='editareClient'),
     path('addSpecialist', views.add_specialist, name='addSpecialist'),
+    path('editareSpecialist/<client_id_client>', views.editareSpecialist, name='editareSpecialist'),
+    path('addteam', views.addteam, name='addteam'),
 ]
