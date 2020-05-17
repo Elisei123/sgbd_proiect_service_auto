@@ -90,7 +90,6 @@ def addClient(request):
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO `Clienti` (`id_client`, `CNP_Client`, `nume`, `prenume`, `telefon`, `judet`, `oras`, `strada`, `numar_poarta`)"
                            " VALUES (NULL,'" + CNP_Client +  "', '" + Nume +  "', '" + Prenume +  "', '" + Telefon +  "', '" + Judet +  "', '" + Oras +  "', '" + Strada +  "', '" + Numar_poarta + "');")
-
         return redirect(clienti)
 
     return render(
@@ -195,9 +194,15 @@ def sarcini(request):
         }
     )
 
-
+@csrf_exempt
 def specialisti(request):
     specialisti = Specialisti.objects.raw('SELECT * FROM Specialisti')
+
+    if request.POST:
+        data = json.loads(request.POST.get("data", "{}"))
+        for id in data['checklisturi_apasate']:
+            Specialisti.objects.filter(id_specialist=str(id)).delete()
+
     return render(
         request,
         'specialisti.html',
@@ -205,6 +210,26 @@ def specialisti(request):
             'specialisti': specialisti,
         }
     )
+
+def add_specialist(request):
+    echipe = Echipe.objects.raw('SELECT * FROM Echipe')
+    if request.POST:
+        Nume = request.POST['Nume']
+        Prenume = request.POST['Prenume']
+        Specializare = request.POST['Specializare']
+        ID_Echipa = request.POST['id_echipa']
+        with connection.cursor() as cursor:
+            cursor.execute("INSERT INTO `Specialisti` (`id_specialist`, `nume`, `prenume`, `specializare`, `id_echipa`) VALUES (NULL, '" + Nume +  "', '" + Prenume + "', '" + Specializare + "', '" + ID_Echipa + "');")
+        return redirect(specialisti)
+
+    return render(
+        request,
+        'addSpecialist.html',
+        {
+            'echipe': echipe,
+        }
+    )
+
 
 # - Selectie
 def especialisti(request):
