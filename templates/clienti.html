@@ -41,8 +41,8 @@
                   <td>{{ client.strada }}</td>
                   <td>{{ client.numar_poarta }}</td>
                   <td><a href="{% url 'editareClient' client.id_client %}" style="color: black" type="button" class="btn btn-warning">Editeaza</a></td>
-                  <td style="text-align: center"><input id="{{ client.id_client }}" onclick="check( {{ client.id_client }} )"
-                                                        type="checkbox" aria-label="Checkbox for following text input"></td>
+                  <td style="text-align: center"><input type="checkbox" id="{{ client.id_client }}" onclick="check( {{ client.id_client }} )"
+                                                         aria-label="Checkbox for following text input"></td>
                 </tr>
             {% endfor %}
           </tbody>
@@ -52,20 +52,24 @@
     <script>
         var checklisturi_apasate = [];
         function delete_rows(){
-            $.post( "", { data: JSON.stringify({
+            if (confirm('Esti sigur ca vrei sa stergi id-urile(' + checklisturi_apasate + ')?')) {
+                $.post( "", { data: JSON.stringify({
                     checklisturi_apasate: checklisturi_apasate
                 }) }, function(response) {
-            })
+                })
+            }
         }
 
         function check(id) {
             if (checklisturi_apasate.includes(id)){
-                checklisturi_apasate.pop(id)
+                const index = checklisturi_apasate.indexOf(id);
+                if (index > -1) {
+                  checklisturi_apasate.splice(index, 1);
+                }
             }else{
                 checklisturi_apasate.push(id)
             }
         }
-
     </script>
 
 {% endblock content %}
