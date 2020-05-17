@@ -248,24 +248,30 @@ def add_specialist(request):
     )
 
 def editareSpecialist(request, client_id_client):
+    global id_echipa_pt_specialist
     if request.POST:
         Nume = request.POST['Nume']
         Prenume = request.POST['Prenume']
         Specializare = request.POST['Specializare']
         ID_Echipa = request.POST['id_echipa']
-
         with connection.cursor() as cursor:
             cursor.execute("UPDATE `Specialisti` SET `nume` = '" + Nume + "', `prenume` = '" + Prenume + "', `specializare` = '" + Specializare + "', `id_echipa` = '" + ID_Echipa + "' WHERE `Specialisti`.`id_specialist` = " + client_id_client + ";")
         return redirect(specialisti)
 
     obj_specialist_pt_editat = Specialisti.objects.get(pk=client_id_client)
     echipe = Echipe.objects.raw('SELECT * FROM Echipe')
+
+    # get id from 'echipe', because if have only name from 'echipa'
+    for i in echipe:
+        if i.nume_echipa == str(obj_specialist_pt_editat.id_echipa):
+            id_echipa_pt_specialist = i.id_echipa
     return render(
         request,
         'editSpecialist.html',
         {
             'obj_client_pt_editat': obj_specialist_pt_editat,
             'echipe': echipe,
+            'id_echipa_pt_specialist': id_echipa_pt_specialist,
         }
     )
 

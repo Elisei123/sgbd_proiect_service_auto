@@ -23,7 +23,7 @@
 {#                            <input style="text-align: center; margin-top: 5px;" type="text" name="Specializare" placeholder="Specializare" required><br>#}
                             <span style="margin-right: 20px;">ID_Echipa: </span>
                             <select style="padding: 8px; padding-left: 57px; padding-right: 30px; margin-top: 5px;" name="id_echipa" required="" id="option_team">
-                                <option value="{{ obj_client_pt_editat.id_echipa }}" selected hidden>{{ obj_client_pt_editat.id_echipa }}</option>
+                                <option value="{{ id_echipa_pt_specialist }}" selected hidden>{{ obj_client_pt_editat.id_echipa }}</option>
                                 {% for echipa in echipe %}
                                   <option value="{{ echipa.id_echipa }}">{{ echipa.nume_echipa }}</option>
                                 {% endfor %}
