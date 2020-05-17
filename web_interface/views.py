@@ -1,5 +1,6 @@
 import json
 
+from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -42,7 +43,7 @@ def clienti(request):
         data = json.loads(request.POST.get("data", "{}"))
         for id in data['checklisturi_apasate']:
             Clienti.objects.filter(id_client=str(id)).delete()
-
+        # messages.error(request, "Clientul a fost sters cu succes!") TODO: Nu merge asta.
     return render(
         request,
         'clienti.html',
@@ -65,6 +66,7 @@ def editareClient(request, client_id_client):
         with connection.cursor() as cursor:
             cursor.execute("UPDATE `Clienti` SET `CNP_Client` = '"+CNP_Client+"', `nume` = '"+Nume+"', `prenume` = '"+Prenume+"',"
                            " `telefon` = '"+Telefon+"', `judet` = '"+Judet+"', `oras` = '"+Oras+"', `strada` = '"+Strada+"', `numar_poarta` = '"+Numar_poarta+"' WHERE `Clienti`.`id_client` = "+ client_id_client+";")
+        messages.success(request, "Clientul a fost editat cu succes!")
         return redirect(clienti)
 
     obj_client_pt_editat = Clienti.objects.get(pk=client_id_client)
@@ -90,6 +92,7 @@ def addClient(request):
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO `Clienti` (`id_client`, `CNP_Client`, `nume`, `prenume`, `telefon`, `judet`, `oras`, `strada`, `numar_poarta`)"
                            " VALUES (NULL,'" + CNP_Client +  "', '" + Nume +  "', '" + Prenume +  "', '" + Telefon +  "', '" + Judet +  "', '" + Oras +  "', '" + Strada +  "', '" + Numar_poarta + "');")
+        messages.success(request, "Clientul a fost adaugat cu succes!")
         return redirect(clienti)
 
     return render(
@@ -194,6 +197,7 @@ def addteam(request):
         Nume_echipa = request.POST['nume_echipa']
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO `Echipe` (`id_echipa`, `nume_echipa`) VALUES (NULL, '" + Nume_echipa + "');")
+        messages.info(request, "Echipa a fost creata cu succes!")
         return redirect(echipe)
     return render(
         request,
@@ -237,6 +241,7 @@ def add_specialist(request):
         ID_Echipa = request.POST['id_echipa']
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO `Specialisti` (`id_specialist`, `nume`, `prenume`, `specializare`, `id_echipa`) VALUES (NULL, '" + Nume +  "', '" + Prenume + "', '" + Specializare + "', '" + ID_Echipa + "');")
+        messages.info(request, "Specialistul a fost adaugat cu succes!")
         return redirect(specialisti)
 
     return render(
@@ -256,6 +261,7 @@ def editareSpecialist(request, client_id_client):
         ID_Echipa = request.POST['id_echipa']
         with connection.cursor() as cursor:
             cursor.execute("UPDATE `Specialisti` SET `nume` = '" + Nume + "', `prenume` = '" + Prenume + "', `specializare` = '" + Specializare + "', `id_echipa` = '" + ID_Echipa + "' WHERE `Specialisti`.`id_specialist` = " + client_id_client + ";")
+        messages.info(request, "Specialistul a editat cu succes!")
         return redirect(specialisti)
 
     obj_specialist_pt_editat = Specialisti.objects.get(pk=client_id_client)
