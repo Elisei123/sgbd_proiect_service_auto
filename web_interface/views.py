@@ -261,7 +261,7 @@ def editareSpecialist(request, client_id_client):
     obj_specialist_pt_editat = Specialisti.objects.get(pk=client_id_client)
     echipe = Echipe.objects.raw('SELECT * FROM Echipe')
 
-    # get id from 'echipe', because if have only name from 'echipa'
+    # get id from 'echipe', because i have only name from 'echipa'
     for i in echipe:
         if i.nume_echipa == str(obj_specialist_pt_editat.id_echipa):
             id_echipa_pt_specialist = i.id_echipa

@@ -4,65 +4,70 @@
 
 {% block content %}
     <div class="container">
-        <br><br><h1 style="text-align: center; font-family: 'Oswald', sans-serif;">Mecanici</h1>
-        <table class="table table-striped table-dark" style="margin-top: 1%;">
-          <thead>
-            <tr>
-              <th scope="col">Nume</th>
-              <th scope="col">Prenume</th>
-              <th scope="col">Echipa</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for mecanic in Mecanici %}
+        <div class="buttons_reddirect" style="float: right; margin-top: 3%">
+            <a href="/specialisti" id="button_redirect" type="button" class="btn btn-success">Acceseaza pagina oficiala</a>
+        </div><br>
+        <div class="employees"><br><br>
+            <h1 style="text-align: center; font-family: 'Oswald', sans-serif;">Mecanici</h1>
+            <table class="table table-striped table-dark" style="margin-top: 1%;">
+              <thead>
                 <tr>
-                  <td>{{ mecanic.nume }}</td>
-                  <td>{{ mecanic.prenume }}</td>
-                  <td>{{ mecanic.nume_echipa }}</td>
+                  <th scope="col">Nume</th>
+                  <th scope="col">Prenume</th>
+                  <th scope="col">Echipa</th>
                 </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {% for mecanic in Mecanici %}
+                    <tr>
+                      <td>{{ mecanic.nume }}</td>
+                      <td>{{ mecanic.prenume }}</td>
+                      <td>{{ mecanic.nume_echipa }}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
 
-            <br><br><h1 style="text-align: center; font-family: 'Oswald', sans-serif;"> Electricieni</h1>
-        <table class="table table-striped table-dark" style="margin-top: 1%;">
-          <thead>
-            <tr>
-              <th scope="col">Nume</th>
-              <th scope="col">Prenume</th>
-              <th scope="col">Echipa</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for electrician in Electricieni %}
+                <br><br><h1 style="text-align: center; font-family: 'Oswald', sans-serif;"> Electricieni</h1>
+            <table class="table table-striped table-dark" style="margin-top: 1%;">
+              <thead>
                 <tr>
-                  <td>{{ electrician.nume }}</td>
-                  <td>{{ electrician.prenume }}</td>
-                  <td>{{ electrician.nume_echipa }}</td>
+                  <th scope="col">Nume</th>
+                  <th scope="col">Prenume</th>
+                  <th scope="col">Echipa</th>
                 </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {% for electrician in Electricieni %}
+                    <tr>
+                      <td>{{ electrician.nume }}</td>
+                      <td>{{ electrician.prenume }}</td>
+                      <td>{{ electrician.nume_echipa }}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
 
-            <br><br><h1 style="text-align: center; font-family: 'Oswald', sans-serif;"> Electromecanici</h1>
-        <table class="table table-striped table-dark" style="margin-top: 1%;">
-          <thead>
-            <tr>
-              <th scope="col">Nume</th>
-              <th scope="col">Prenume</th>
-              <th scope="col">Echipa</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for electromecanic in Electromecanici %}
+                <br><br><h1 style="text-align: center; font-family: 'Oswald', sans-serif;"> Electromecanici</h1>
+            <table class="table table-striped table-dark" style="margin-top: 1%;">
+              <thead>
                 <tr>
-                  <td>{{ electromecanic.nume }}</td>
-                  <td>{{ electromecanic.prenume }}</td>
-                  <td>{{ electromecanic.nume_echipa }}</td>
+                  <th scope="col">Nume</th>
+                  <th scope="col">Prenume</th>
+                  <th scope="col">Echipa</th>
                 </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {% for electromecanic in Electromecanici %}
+                    <tr>
+                      <td>{{ electromecanic.nume }}</td>
+                      <td>{{ electromecanic.prenume }}</td>
+                      <td>{{ electromecanic.nume_echipa }}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
     </div>
 
 {% endblock content %}
