@@ -23,7 +23,7 @@
 
     
 ##### - Selectie (`def-name: especialisti`)  
-    SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Mecanic
+    SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Mecanic"
     SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Electromecanic"
     SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Electrician"
     
