@@ -7,10 +7,10 @@ class Clienti(models.Model):
     CNP_Client = models.CharField(max_length=14)
     nume = models.CharField(max_length=35)
     prenume = models.CharField(max_length=35)
-    judet = models.CharField(max_length=40)
-    oras = models.CharField(max_length=40)
-    strada = models.CharField(max_length=40)
-    numar_poarta = models.CharField(max_length=40)
+    judet = models.CharField(max_length=40, default=None)
+    oras = models.CharField(max_length=40, default=None)
+    strada = models.CharField(max_length=40, default=None)
+    numar_poarta = models.CharField(max_length=40, default=None)
     telefon = models.CharField(max_length=11)
 
     class Meta:
@@ -68,12 +68,9 @@ class Constatari(models.Model):
     def __str__(self):
         return '{}'.format(self.id_constatare)
 
-
 class Piese(models.Model):
     id_piesa = models.AutoField(primary_key=True)
-    id_constatare = models.ForeignKey(Constatari, models.DO_NOTHING, db_column='id_constatare')
     pret = models.IntegerField()
-    cantitate = models.IntegerField()
     nume_piesa = models.CharField(max_length=55)
 
     class Meta:
@@ -82,6 +79,14 @@ class Piese(models.Model):
     def __str__(self):
         return '{}'.format(self.id_piesa)
 
+class Constatari_Piese(models.Model):
+    id_constatare_piesa = models.AutoField(primary_key=True)
+    id_constatare = models.ForeignKey(Constatari, models.DO_NOTHING, db_column='id_constatare')
+    id_piesa = models.ForeignKey(Piese, models.DO_NOTHING, db_column='id_piesa')
+    cantitate = models.IntegerField(db_column='cantitate')
+
+    class Meta:
+        db_table = 'Constatari_Piese'
 
 class Sarcini(models.Model):
     id_sarcina = models.AutoField(primary_key=True)
@@ -93,3 +98,5 @@ class Sarcini(models.Model):
 
     def __str__(self):
         return '{}'.format(self.id_sarcina)
+
+

@@ -25,7 +25,7 @@
               <th scope="col">Strada</th>
               <th scope="col">Nr_casa</th>
               <th scope="col">Editare</th>
-              <th scope="col">Checkboxes</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -52,11 +52,17 @@
     <script>
         var checklisturi_apasate = [];
         function delete_rows(){
-            if (confirm('Esti sigur ca vrei sa stergi id-ul/id-urile(' + checklisturi_apasate + ')?')) {
-                $.post( "", { data: JSON.stringify({
-                    checklisturi_apasate: checklisturi_apasate
-                }) }, function(response) {
-                })
+            if(checklisturi_apasate.length === 0){
+                alert("Nu ai selectat nimic pentru a sterge.")
+            }else {
+                if (confirm('Esti sigur ca vrei sa stergi id-ul / id-urile(' + checklisturi_apasate + ')?')) {
+                    $.post("", {
+                        data: JSON.stringify({
+                            checklisturi_apasate: checklisturi_apasate
+                        })
+                    }, function (response) {
+                    })
+                }
             }
         }
 

@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.db import connection
 
-from .models import Clienti, Comenzi, Constatari, Echipe, Piese, Sarcini, Specialisti
+from .models import Clienti, Comenzi, Constatari, Echipe, Piese, Sarcini, Specialisti, Constatari_Piese
 
 
 # Create your views here.
@@ -332,25 +332,37 @@ def StareComenzi(request):
         }
     )
 
-
+# TODO: Problema este aici!
 #- Jonctiunea (II)
-def ConstatariCuPiese(request):
-    ConstatariCuPiese = Piese.objects.raw(
-        "SELECT p.id_piesa,"
-            " p.nume_piesa,"
-            " com.data_comanda,"
-            " com.stare_comanda,"
-            " com.descriere "
-        "from Piese p "
-            "inner JOIN Constatari const"
-                " ON p.id_constatare=const.id_constatare"
-            " INNER JOIN Comenzi com"
-                " ON const.id_comanda=com.id_comanda")
+# def ConstatariCuPiese(request):
+#     ConstatariCuPiese = Piese.objects.raw(
+#         "SELECT p.id_piesa,"
+#             " p.nume_piesa,"
+#             " com.data_comanda,"
+#             " com.stare_comanda,"
+#             " com.descriere "
+#         "from Piese p "
+#             "inner JOIN Constatari const"
+#                 " ON p.id_constatare=const.id_constatare"
+#             " INNER JOIN Comenzi com"
+#                 " ON const.id_comanda=com.id_comanda")
+#     return render(
+#         request,
+#         'ConstatariCuPiese.html',
+#         {
+#             'ConstatariCuPiese': ConstatariCuPiese,
+#         }
+#     )
+
+def constatari_piese_mm(request):
+    constatari_piese = Constatari_Piese.objects.raw("Select * from Constsatari_Piese")
+
+
     return render(
         request,
-        'ConstatariCuPiese.html',
+        'constatari_piese_mm.html',
         {
-            'ConstatariCuPiese': ConstatariCuPiese,
+            'constatari_piese': constatari_piese
         }
     )
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from web_interface.models import Clienti, Comenzi, Constatari, Echipe, Piese, Sarcini, Specialisti
+from web_interface.models import Clienti, Comenzi, Constatari, Echipe, Piese, Sarcini, Specialisti, Constatari_Piese
 
 
 @admin.register(Clienti)
@@ -30,4 +30,8 @@ class SarciniAdmin(admin.ModelAdmin):
 
 @admin.register(Specialisti)
 class SpecialistiAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Constatari_Piese)
+class Constatari_PieseAdmin(admin.ModelAdmin):
     pass
