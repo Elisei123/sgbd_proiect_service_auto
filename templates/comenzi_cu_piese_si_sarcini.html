@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Comenzi cu piese sau sarcini {% endblock title %}
+
+{% block current_page1 %}  Comenzi cu piese sau sarcini {% endblock current_page1 %}
+
+{% block content %}
+    <div class="container">
+        <h1 style="text-align: center; margin-top: 3%; font-family: 'Oswald', sans-serif;"> Comenzile care contin piese sau/si sarcini </h1>
+        <table class="table table-striped table-dark" style="margin-top: 5%;">
+          <thead>
+            <tr>
+              <th scope="col" style="text-align: center">ID_Constatare</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for comanda in comenzi %}
+                <tr>
+                  <th scope="row" style="text-align: center">{{ comanda.id_constatare }}</th>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+{% endblock content %}

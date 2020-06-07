@@ -15,10 +15,9 @@ urlpatterns = [
     path('specialisti/', views.specialisti, name='specialisti'),
     path('especialisti/', views.especialisti, name='especialisti'),
     path('incasari/', views.incasari, name='incasari'),
-    path('StareComenzi/', views.StareComenzi, name='StareComenzi'),
+    path('comenzi_cu_piese_si_sarcini/', views.comenzi_cu_piese_si_sarcini, name='comenzi_cu_piese_si_sarcini'),
     path('CautareClient/', views.CautareClient, name='CautareClient'),
     path('ComenziEfectuate/', views.ComenziEfectuate, name='ComenziEfectuate'),
-    # path('ConstatariCuPiese/', views.ConstatariCuPiese, name='ConstatariCuPiese'),
     path('constatari_piese_mm/', views.constatari_piese_mm, name='constatari_piese_mm'),
     path('ComenziDistincte/', views.ComenziDistincte, name='ComenziDistincte'),
     path('addClient/', views.addClient, name='addClient'),
@@ -26,4 +25,5 @@ urlpatterns = [
     path('addSpecialist', views.add_specialist, name='addSpecialist'),
     path('editareSpecialist/<client_id_client>', views.editareSpecialist, name='editareSpecialist'),
     path('addteam', views.addteam, name='addteam'),
+    path('Comenzi_fara_constatare/', views.Comenzi_fara_constatare, name='Comenzi_fara_constatare'),
 ]

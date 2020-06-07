@@ -320,42 +320,20 @@ def incasari(request):
     )
 
 # - Reuniune
-def StareComenzi(request):
-    comenzi = Comenzi.objects.raw("SELECT * FROM Comenzi WHERE stare_comanda = 'In desfasurare!'"
+def comenzi_cu_piese_si_sarcini(request):
+    comenzi = Constatari_Piese.objects.raw("SELECT id_constatare_piesa, id_constatare, id_piesa FROM Constatari_Piese"
                                   " UNION"
-                                  " SELECT * FROM Comenzi WHERE stare_comanda = 'Comanda plasata!'")
+                                  " SELECT id_sarcina, id_constatare, Task FROM Sarcini")
     return render(
         request,
-        'stare_comenzi.html',
+        'comenzi_cu_piese_si_sarcini.html',
         {
             'comenzi': comenzi,
         }
     )
 
-# TODO: Problema este aici!
-#- Jonctiunea (II)
-# def ConstatariCuPiese(request):
-#     ConstatariCuPiese = Piese.objects.raw(
-#         "SELECT p.id_piesa,"
-#             " p.nume_piesa,"
-#             " com.data_comanda,"
-#             " com.stare_comanda,"
-#             " com.descriere "
-#         "from Piese p "
-#             "inner JOIN Constatari const"
-#                 " ON p.id_constatare=const.id_constatare"
-#             " INNER JOIN Comenzi com"
-#                 " ON const.id_comanda=com.id_comanda")
-#     return render(
-#         request,
-#         'ConstatariCuPiese.html',
-#         {
-#             'ConstatariCuPiese': ConstatariCuPiese,
-#         }
-#     )
-
 def constatari_piese_mm(request):
-    constatari_piese = Constatari_Piese.objects.raw("Select * from Constsatari_Piese")
+    constatari_piese = Constatari_Piese.objects.raw("Select * from Constatari_Piese")
 
 
     return render(
@@ -363,6 +341,20 @@ def constatari_piese_mm(request):
         'constatari_piese_mm.html',
         {
             'constatari_piese': constatari_piese
+        }
+    )
+
+def Comenzi_fara_constatare(request):
+    Comenzi_fara_constatare = Comenzi.objects.raw(
+        "SELECT * FROM Comenzi WHERE id_comanda  NOT IN (SELECT id_comanda FROM Constatari)")
+
+    # ("SELECT id_comanda FROM Comenzi EXCEPT SELECT id_comanda FROM Constatari")
+
+    return render(
+        request,
+        'Comenzi_fara_constatare.html',
+        {
+            'Comenzi_fara_constatare': Comenzi_fara_constatare
         }
     )
 

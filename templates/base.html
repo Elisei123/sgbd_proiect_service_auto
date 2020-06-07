@@ -45,7 +45,7 @@
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="nav-link" href="/ComenziEfectuate">Comenzi Efectuate</a>
-                    <a class="nav-link" href="/StareComenzi">Stare comenzi</a>
+                    <a class="nav-link" href="/comenzi_cu_piese_si_sarcini">Comenzi cu piese si sarcini</a>
                     <a class="nav-link" href="/ComenziDistincte">Comenzi Distincte</a>
                   </div>
                 </div>
@@ -62,8 +62,8 @@
                     <a class="nav-link" href="/CautareClient">Cautare Client</a>
                 </li>
 
-                <li class="nav-item" style="{% if request.resolver_match.url_name == "ConstatariCuPiese" %}font-weight: bold;{% endif %}">
-                    <a class="nav-link" href="/ConstatariCuPiese">Constatari care contin piese</a>
+                <li class="nav-item" style="{% if request.resolver_match.url_name == "Clienti_fara_constatare" %}font-weight: bold;{% endif %}">
+                    <a class="nav-link" href="/Comenzi_fara_constatare">Comenzi fara constatare</a>
                 </li>
 
                 <div class="dropdown">
