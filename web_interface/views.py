@@ -35,6 +35,7 @@ def piese(request):
         }
     )
 
+# - Selectie
 @csrf_exempt
 def clienti(request):
     clienti = Clienti.objects.raw('SELECT * FROM Clienti ORDER BY id_client DESC;')
@@ -148,7 +149,6 @@ def comenzi(request):
         }
     )
 
-# - Diferenta
 def ComenziEfectuate(request):
     comenzi = Comenzi.objects.raw("SELECT * FROM `Comenzi`"
                                   " EXCEPT "
@@ -279,8 +279,7 @@ def editareSpecialist(request, client_id_client):
         }
     )
 
-
-# - Selectie
+# - Jonctiunea (II)
 def especialisti(request):
     Mecanici = Specialisti.objects.raw('SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Mecanic"')
     Electromecanici = Specialisti.objects.raw('SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Electromecanic"')
@@ -344,11 +343,12 @@ def constatari_piese_mm(request):
         }
     )
 
+# - Diferenta
 def Comenzi_fara_constatare(request):
     Comenzi_fara_constatare = Comenzi.objects.raw(
         "SELECT * FROM Comenzi WHERE id_comanda  NOT IN (SELECT id_comanda FROM Constatari)")
 
-    # ("SELECT id_comanda FROM Comenzi EXCEPT SELECT id_comanda FROM Constatari")
+    # Un al doilea exemplu:  ("SELECT id_comanda FROM Comenzi EXCEPT SELECT id_comanda FROM Constatari")
 
     return render(
         request,

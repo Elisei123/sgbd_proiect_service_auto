@@ -10,22 +10,18 @@
 
 ### Mysql hints.
 
-##### - Reuniune  (`def-name: StareComenzi` )
-  
-    SELECT * FROM Comenzi WHERE stare_comanda = 'In desfasurare!'  
-    UNION  
-    SELECT * FROM Comenzi WHERE stare_comanda = 'Comanda plasata!'
+##### - Reuniune  (`def-name: comenzi_cu_piese_si_sarcini` )
+		SELECT id_constatare_piesa, id_constatare, id_piesa FROM Constatari_Piese
+		UNION
+		SELECT id_sarcina, id_constatare, Task FROM Sarcini
       
-##### - Diferenta (`def-name: ComenziEfectuate`)
-    SELECT * FROM `Comenzi`
-    EXCEPT
-    SELECT * FROM `Comenzi` WHERE stare_comanda = 'In desfasurare!' OR stare_comanda= 'Comanda plasata!'
+##### - Diferenta (`def-name: Comenzi_fara_constatare`)
+        SELECT * FROM Comenzi WHERE id_comanda  
+		NOT IN (SELECT id_comanda FROM 	Constatari)
 
     
-##### - Selectie (`def-name: especialisti`)  
-    SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Mecanic"
-    SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Electromecanic"
-    SELECT id_specialist, nume, prenume, specializare, nume_echipa FROM Specialisti s INNER JOIN Echipe e WHERE s.id_echipa=e.id_echipa AND specializare="Electrician"
+##### - Selectie (`def-name: clienti`)  
+    SELECT * FROM Clienti ORDER BY id_client DESC;
     
 ##### - Proiectie (`def-name: ComenziDistincte`)
     SELECT DISTINCT descriere FROM Comenzi GROUP BY descriere 
@@ -42,17 +38,16 @@
                    ON com.id_comanda = const.id_comanda   
   
 
-##### - Jonctiunea (II)  (`def-name: ConstatariCuPiese`)  
-    SELECT p.id_piesa, 
-           p.nume_piesa, 
-           com.data_comanda, 
-           com.stare_comanda, 
-           com.descriere 
-    FROM   piese p 
-           INNER JOIN constatari const 
-                   ON p.id_constatare = const.id_constatare 
-           INNER JOIN comenzi com 
-                   ON const.id_comanda = com.id_comanda 
+##### - Jonctiunea (II)  (`def-name: especialisti`)  
+	SELECT    id_specialist,
+	          nume,
+			prenume, 
+			specializare, 
+			nume_echipa 
+	FROM		specialisti s 
+	INNER JOIN echipe e 
+	where	s.id_echipa=e.id_echipa	
+	AND		specializare="Mecanic"
     
 
 ###### P.S: Def-name = function name in [views.py](https://github.com/Elisei123/sgbd_proiect_service_auto/blob/master/web_interface/views.py).
